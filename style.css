@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
+:root {
+    --clr-text-primary: #dadada;
+    --clr-bg-primary: #303030;
+    --clr-bg-secondary: #373737;
+    --clr-accent: #ff4747;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-feature-settings: "lnum";
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    color: var(--clr-text-primary);
+}
+
+body {
+    margin: 0;
+    background: var(--clr-bg-primary);
+    background: linear-gradient(114deg, var(--clr-bg-secondary) 40%, var(--clr-bg-primary) 40%);
+    background-attachment: fixed;
+}
+
+.img-holder {
+    height: 100%;
+    position: relative;
+    transition: ease-in-out .5s;
+    padding: 0 0;
+}
+
+#logo-img {
+    height: 5vh;
+    padding: 0 0 0 5px;
+
+}
+
+.img-holder:hover {
+    transform: scale(1.1, 1.1);
+}
+
+#header {
+    overflow: hidden;
+    padding: 10px 10px 10px 10px;
+    position: relative;
+}
+
+#header a {
+    float: left;
+    color: var(--clr-text-primary);
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    transition: ease-in-out .2s;
+}
+
+#header a:hover {
+    color: var(--clr-bg-primary);
+    background-color: var(--clr-accent);
+    transform: rotateZ(3deg);
+}
+
+.header-right {
+    float: right;
+}
+
+#dev-title {
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 10rem);
+    margin: 2.5%;
+    display: inline-block;
+}
+
+.icon-list-img {
+    height: 5vh;
+}
+
+@media screen and (max-width: 500px) {
+    #header a {
+        float: none;
+        display: block;
+        text-align: left;
+        transition: none;
+    }
+
+    .header-right {
+        float: none;
+    }
+}
+
+#mod-list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    float: right;
+    gap: 2em;
+    margin-right: 2em;
+
+}
+
+.card {
+    color: var(--clr-text-primary);
+    background-position: center center;
+    background-size: cover;
+    padding: 8rem 0 0;
+    max-width: 30ch;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    transition: transform 350ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+    transform: scale(1.05);
+}
+
+.card-content {
+    --padding: 1.5rem;
+    padding: var(--padding);
+    background: linear-gradient(hsl(0 0% 0% / 0), hsl(0 0% 0% / .8));
+}
+
+.card-title {
+    position: relative;
+    width: max-content;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    height: 4px;
+    left: calc(var(--padding) * -1);
+    bottom: -8px;
+    width: calc(100% + var(--padding));
+    background: var(--clr-accent);
+
+    transform-origin: left;
+    transition: transform 350ms ease;
+}
+
+.card:hover .card-title::after,
+.card:focus-within .card-title::after {
+    transform: scaleX(1);
+}
+
+@media (hover) {
+    .card-content {
+        transform: translateY(60%);
+        transition: transform 350ms ease;
+    }
+
+    .card:hover .card-content,
+    .card:focus-within .card-content {
+        transform: translateY(0);
+        transition-delay: 350ms;
+    }
+
+    .card:focus-within .card-content {
+        transition-duration: 0ms;
+    }
+
+    .card-content > *:not(.card-title) {
+        opacity: 0;
+        transition: opacity 350ms linear;
+    }
+
+    .card:hover .card-content > *:not(.card-title),
+    .card:focus-within .card-content > *:not(.card-title) {
+        opacity: 1;
+        transition-delay: 350ms;
+    }
+
+    .card-title::after {
+        transform: scaleX(0);
+    }
+}
+
+.card-button {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--clr-bg-primary);
+    background-color: var(--clr-accent);
+    padding: 0.5em 1.25em;
+    border-radius: 0.25em;
+}
+
+.card-button:hover,
+.card-button:focus {
+    background-color: var(--clr-text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition-delay: 0ms !important;
+    }
+}

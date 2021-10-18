@@ -24,7 +24,7 @@ header {
   position: relative;
   top: 0;
   width: 100%;
-  padding: 30px 100px;
+  padding: 30px 5vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,7 +74,7 @@ header .navigation a:hover {
 
 .content {
   max-width: 650px;
-  margin: 60px 100px;
+  margin: 60px 5vw;
 }
 .content .info h2 {
   color: #ff4747;
@@ -135,7 +135,7 @@ label {
   display: none;
 }
 
-@media (max-width: 1020px) {
+@media (max-width: 920px) {
   header .navigation {
     display: none;
   }
@@ -146,6 +146,10 @@ label {
     cursor: pointer;
     transition: 0.3s;
     transition-property: color;
+  }
+  label * {
+    top: 50px;
+    right: 5vw;
   }
   label .close-btn {
     display: none;
@@ -215,10 +219,6 @@ label {
   .content .info p {
     font-size: 14px;
   }
-
-  header .logo text {
-    display: none;
-  }
 }
 @media (max-width: 480px) {
   .content .buttons {
@@ -231,6 +231,10 @@ label {
   .content .buttons .media-icons {
     padding-left: 10px;
     padding-top: 10px;
+  }
+
+  header .logo text {
+    display: none;
   }
 }
 @media (max-width: 430px) {

@@ -20,6 +20,7 @@ section
   justify-content: flex-start
   background: $dark-color
   background-size: cover
+  overflow-x: hidden
   background-position: center
 
 header
@@ -49,6 +50,9 @@ header
       padding-left: 10px
 
     img
+      image-rendering: pixelated
+      image-rendering: crisp-edges
+
       width: 50px
       height: auto
 
@@ -187,6 +191,36 @@ label
     .menu-btn
       position: absolute
 
+  header
+    .logo
+      bottom: -6px
+
+  .content
+    .info
+      h2
+        font-size: 45px
+        line-height: 50px
+
+        span
+          font-size: 40px
+          font-weight: 600
+
+      p
+        font-size: 14px
+
 @media (max-width: 580px)
+  .content
+    .info
+      h2
+        font-size: 35px
+        line-height: 40px
+
+        span
+          font-size: 30px
+          font-weight: 600
+
+      p
+        font-size: 14px
+
   header .logo text
     display: none

@@ -220,5 +220,31 @@ label {
     display: none;
   }
 }
+@media (max-width: 480px) {
+  .content .buttons {
+    align-items: normal;
+    flex-direction: column;
+  }
+  .content .buttons .download {
+    text-align: center;
+  }
+  .content .buttons .media-icons {
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+}
+@media (max-width: 430px) {
+  .content .info h2 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .content .info h2 span {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .content .info p {
+    font-size: 14px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

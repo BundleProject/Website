@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: "Project Bundle API"
+  description: "Bundle is a mod updater that updates your mods before even Minecraft starts!"
+  version: "v1"
+  contact:
+    name: "Bundle Support Server"
+    url: "https://discord.gg/GExNWGpR"
+  x-logo:
+    url: 'https://dl.isxander.dev/logos/bundle/v1/bundle.png'
+    altText: Bundle Logo
+  license:
+    name: "All Rights Reserved"
+    url: "https://github.com/BundleProject/API/blob/main/LICENSE"
+servers:
+  - url: "https://api.bundleproject.org/v1"
+    description: "Main server"
+tags:
+  - name: "Mods"
+    description: "Get mod data from bundle API!"
+paths:
+  /mods/{id}/{platform}/{minecraftVersion}/{version}:
+    get:
+      tags:
+        - "Mods"
+      summary: "Get data about a mod"
+      description: "Gets data about a mod from the respective API. You can also use 'latest' as mod version"
+      operationId: "getMetadata"
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "string"
+          description: "Mod ID"
+        - in: "path"
+          name: "platform"
+          required: true
+          schema:
+            type: "string"
+          description: "Mod platform"
+        - in: "path"
+          name: "minecraftVersion"
+          required: true
+          schema:
+            type: "string"
+          description: "Minecraft version"
+        - in: "path"
+          name: "version"
+          required: true
+          schema:
+            type: "string"
+          description: "Version of the mod"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  success:
+                    type: "boolean"
+                    example: true
+                  data:
+                    type: "object"
+                    properties:
+                      url:
+                        type: "string"
+                        example: "string"
+                      metadata:
+                        type: "object"
+                        properties:
+                          display:
+                            type: "string"
+                            example: "string"
+                          creator:
+                            type: "string"
+                            example: "string"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  success:
+                    type: "boolean"
+                    example: false
+                  error:
+                    type: "string"
+                    example: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  success:
+                    type: "boolean"
+                    example: false
+                  error:
+                    type: "string"
+                    example: "string"
+
+  /mods/{id}/{platform}/{minecraftVersion}/{version}/download:
+    get:
+      tags:
+        - "Mods"
+      summary: "Get mod download url"
+      description: "Get a direct download from the bundle API"
+      operationId: "getDownload"
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "string"
+          description: "Mod ID"
+        - in: "path"
+          name: "platform"
+          required: true
+          schema:
+            type: "string"
+          description: "Mod download platform"
+        - in: "path"
+          name: "minecraftVersion"
+          required: true
+          schema:
+            type: "string"
+          description: "Minecraft version"
+        - in: "path"
+          name: "version"
+          required: true
+          schema:
+            type: "string"
+          description: "Version of the mod"
+      responses:
+        "301":
+          description: "Moved Permanently"
+          content:
+            application/java-archive:
+              schema:
+                type: "string"
+                format: "binary"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  success:
+                    type: "boolean"
+                    example: false
+                  error:
+                    type: "string"
+                    example: "string"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  success:
+                    type: "boolean"
+                    example: false
+                  error:
+                    type: "string"
+                    example: "string"
+
+  /mods/bulk/{bulk}:
+    get:
+      tags:
+        - Mods
+      summary: Bulk Mod Request
+      description: Get multiple mod data entries from one request
+      operationId: getBulkMetadata
+      parameters:
+        - in: "path"
+          name: "bulk"
+          required: true
+          schema:
+            type: "string"
+          description: 'Base64 json request in the form of [{id, platform, minecraftVersion, version}]'
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  - type: "object"
+                    properties:
+                      success:
+                        type: "boolean"
+                        example: true
+                      data:
+                        type: "object"
+                        properties:
+                          url:
+                            type: "string"
+                            example: "string"
+                          metadata:
+                            type: "object"
+                            properties:
+                              display:
+                                type: "string"
+                                example: "string"
+                              creator:
+                                type: "string"
+                                example: "string"
+        "400":
+          description: "Bad Request"

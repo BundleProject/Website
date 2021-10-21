@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
-
-$light-color: #fafafa
-$dark-color: #303030
-$accent-color: #ff4747
+@import "themes"
 
 *
   margin: 0
   padding: 0
   box-sizing: border-box
   font-family: "Poppins", sans-serif
-  color: white
+
+  @include themed()
+    color: t($foreground-color)
 
 section
   position: relative
@@ -18,10 +17,12 @@ section
   display: flex
   flex-direction: column
   justify-content: flex-start
-  background: $dark-color
   background-size: cover
   overflow-x: hidden
   background-position: center
+
+  @include themed()
+    background: t($background-color)
 
 header
   position: relative
@@ -36,12 +37,14 @@ header
     display: flex
     align-items: center
     position: relative
-    color: $light-color
     font-size: 30px
     text-decoration: none
     text-transform: uppercase
     font-weight: 800
     letter-spacing: 1px
+
+    @include themed()
+      color: t($foreground-color)
 
     transition: 0.3s
     transition-property: transform
@@ -59,24 +62,33 @@ header
   .logo:hover
     transform: scale(1.05)
 
-  .navigation
-    a
-      color: $light-color
+  .right-row
+    display: flex
+    align-items: center
+
+    a, label
       text-decoration: none
       font-weight: 600
       letter-spacing: 1px
       padding: 2px 15px
       border-radius: 5px
 
+      @include themed()
+        color: t($foreground-color)
+
       transition: 0.3s
       transition-property: background, color
 
-    a:not(:last-child)
+    a:not(:last-child), label:not(:last-child)
       margin-right: 30px
 
-    a:hover
-      background: $accent-color
-      color: $dark-color
+    a:hover, label:hover
+      @include themed()
+        background: t($accent-color)
+        color: t($background-color)
+
+    .theme-btn
+      font-size: 20px
 
 .content
   max-width: 650px
@@ -84,7 +96,6 @@ header
 
   .info
     h2
-      color: $accent-color
       font-size: 55px
       text-transform: uppercase
       font-weight: 800
@@ -92,10 +103,15 @@ header
       line-height: 60px
       margin-bottom: 30px
 
+      @include themed()
+        color: t($accent-color)
+
       span
-        color: $light-color
         font-size: 50px
         font-weight: 600
+
+        @include themed()
+          color: t($foreground-color)
 
     p
       font-size: 16px
@@ -108,8 +124,6 @@ header
     align-items: center
 
     .download
-      color: $dark-color
-      background: $accent-color
       text-decoration: none
       text-transform: uppercase
       font-weight: 700
@@ -117,34 +131,50 @@ header
       padding: 10px 20px
       border-radius: 5px
 
+      @include themed()
+        color: t($background-color)
+        background: t($accent-color)
+
       transition: 0.3s
       transition-property: background
 
     .download:hover
-      background: $light-color
+      @include themed()
+        background: t($foreground-color)
 
     .media-icons
       padding-left: 20px
 
       a
         position: relative
-        color: $light-color
         font-size: 25px
+
+        @include themed()
+          color: t($foreground-color)
 
       a:not(:first-child)
         margin-left: 20px
 
-label
+#dropdown-btns
   display: none
 
-#check
+input
   display: none
 
-@media (max-width: 920px)
-  header .navigation
+.theme--light
+  .light-btn
     display: none
 
-  label
+.theme--dark
+  .dark-btn
+    display: none
+
+@media (max-width: 990px)
+  header
+    .navigation, .theme-btn
+      display: none
+
+  #dropdown-btns
     display: block
     font-size: 25px
     cursor: pointer
@@ -160,13 +190,21 @@ label
       display: none
 
   label:hover
-    color: $accent-color
+    @include themed()
+      color: t($accent-color)
 
   #check:checked ~ header
+    .theme-btn
+      z-index: 3
+      display: flex
+      position: fixed
+      left: 5vw
+      font-size: 25px
+
+
     .navigation
       z-index: 2
       position: fixed
-      background: rgba($accent-color, 0.8)
       top: 0
       bottom: 0
       left: 0
@@ -175,6 +213,9 @@ label
       flex-direction: column
       justify-content: center
       align-items: center
+
+      @include themed()
+        background: rgba(t($accent-color), 0.8)
 
       a
         font-weight: 700

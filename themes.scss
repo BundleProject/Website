@@ -1,0 +1,36 @@
+$foreground-color: 'foreground-color';
+$background-color: 'background-color';
+$accent-color: 'accent-color';
+
+$themes: (
+  light: (
+    foreground-color: #303030,
+    background-color: #fafafa,
+    accent-color: #ff4747
+  ),
+  dark: (
+    foreground-color: #fafafa,
+    background-color: #303030,
+    accent-color: #ff4747
+  ),
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}
+
+

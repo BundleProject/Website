@@ -21,20 +21,30 @@
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="darkmode.js"></script>
+
     <section>
         <input type="checkbox" id="check">
+        <input type="checkbox" id="dark-mode-switch">
         <header>
             <a href="#" class="logo">
                 <img src="https://dl.isxander.dev/logos/bundle/v1/bundle.png" alt="logo"/>
                 <text>Bundle Project</text>
             </a>
-            <div class="navigation">
-                <a href="https://www.bundleproject.org">Home</a>
-                <a href="https://github.com/orgs/BundleProject/repositories">Projects</a>
-                <a href="https://github.com/BundleProject">GitHub</a>
-                <a href="https://discord.gg/gzJDUt3a8w">Discord</a>
+            <div class="right-row">
+                <label for="dark-mode-switch" class="theme-btn">
+                    <i class="fas fa-sun light-btn"></i>
+                    <i class="fas fa-moon dark-btn"></i>
+                </label>
+                <div class="navigation">
+                    <a href="https://www.bundleproject.org">Home</a>
+                    <a href="https://github.com/orgs/BundleProject/repositories">Projects</a>
+                    <a href="https://github.com/BundleProject">GitHub</a>
+                    <a href="https://discord.gg/gzJDUt3a8w">Discord</a>
+                </div>
             </div>
-            <label for="check">
+            <label for="check" id="dropdown-btns">
                 <i class="fas fa-bars menu-btn"></i>
                 <i class="fas fa-times close-btn"></i>
             </label>

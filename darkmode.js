@@ -2,7 +2,7 @@ $(document).ready(function() {
     let theme = localStorage.getItem("theme")
 
     if (theme === null) {
-        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+        theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
         localStorage.setItem("theme", theme)
     }
 
